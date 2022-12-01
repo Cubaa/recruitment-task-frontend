@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Main } from './components/main/main';
 
-function App() {
+export const App: FC = () => {
   return (
     <div>
-     Hello world
+     <Main />
     </div>
   );
 }
-
-export default App;

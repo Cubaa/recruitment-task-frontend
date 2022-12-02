@@ -1,79 +1,54 @@
 import React, { FC } from 'react'
-import { Box, createTheme, Grid, responsiveFontSizes, ThemeProvider, Typography } from '@mui/material'
+import { Box, Grid, ThemeProvider, Typography } from '@mui/material'
+import { IPeople } from '../../../utils/fetch-people';
+import { detailsTheme, personDetailsTheme } from './styled-portrait-data';
 
-export const PortraitData: FC = () => {
-  let theme = createTheme({
-    typography: {
-      body1: {
-        fontSize: "20",
-      },
-    },
-  });
-  theme = responsiveFontSizes(theme);
+interface IPortraitDataProps {
+  peopleData: IPeople | undefined;
+}
+
+export const PortraitData: FC<IPortraitDataProps> = (props) => {
+  const { peopleData } = props;
 
   return (
     <>
-      <Grid display="flex" width={{
-            sm: "65%"
-          }} alignItems="center" justifyContent="flex-end" gap={8} pt={2}>
-          <ThemeProvider theme={theme}>
-            <Box>
-              <Typography variant='h3' sx={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: "800",
-              }}>Name</Typography>
-            </Box>
-            </ThemeProvider>
-            <Box display="flex" sx={{
-              gap: "20px"
-            }}>
-              <Box component="img" src='./icon2.svg' alt="icon2" maxWidth={{
-                xs: "30%",
-                md: "100%"
-              }} sx={{
-                cursor: "pointer"
-              }}>
+      <ThemeProvider theme={detailsTheme}>
+        <Grid container item >
+              <Box>
+                <Typography variant='h3' fontFamily="'Inter', sans-serif" fontWeight="800">{peopleData?.name}</Typography>
               </Box>
-              <Box component="img" src='./icon1.svg' alt="icon1" maxWidth={{
-                xs: "30%",
-                md: "100%"
-              }} sx={{
-                cursor: "pointer"
-              }}>
+              <Box display="flex" gap="20px">
+                <Box component="img" src='./icon2.svg' alt="icon2" maxWidth={{
+                  xs: "30%",
+                  md: "100%"
+                }} sx={{
+                  cursor: "pointer"
+                }}>
+                </Box>
+                <Box component="img" src='./icon1.svg' alt="icon1" maxWidth={{
+                  xs: "30%",
+                  md: "100%"
+                }} sx={{
+                  cursor: "pointer"
+                }}>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
-          <Grid container display="flex" pt={2} sx={{
-            justifyContent: "center",
-          }}>
-            <Box sx={{
-              width: {
-                xs: "90%",
-                sm: "30%"
-              }
-            }}>
-              <ThemeProvider theme={theme}>
-                <Box>
-                  <Typography variant='body1' sx={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: "100",
-                    fontStyle: "italic"
-                  }}>
-                    Age:
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant='body1' sx={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: "100",
-                    fontStyle: "italic"
-                  }}>
-                    Eye color:
-                  </Typography>
-                </Box>
-              </ThemeProvider>
-            </Box>
-          </Grid>
+            </Grid>
+          </ThemeProvider>
+          <ThemeProvider theme={personDetailsTheme}>
+            <Grid container>
+                  <Box>
+                    <Typography variant='body1'>
+                      Age: {peopleData?.birth_year}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant='body1'>
+                      Eye color: {peopleData?.eye_color}
+                    </Typography>
+                  </Box>
+        </Grid>
+      </ThemeProvider>
     </>
   )
 }

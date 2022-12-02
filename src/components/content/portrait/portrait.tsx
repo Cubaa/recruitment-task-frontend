@@ -1,16 +1,19 @@
-import { Box } from '@mui/material'
 import React, { FC } from 'react'
+import { Box } from '@mui/material'
 
 export const Portrait: FC = () => {
+  const imageUrl = "https://picsum.photos/534/383.jpg"
+
   return (
     <>
       <Box component="img" px={{
           xs: 3,
           md: 0
-        }} src="./unsplash_Zz5LQe-VSMY.png" alt="img" sx={{
+        }} src={imageUrl} alt="img" sx={{
           maxWidth: "100%",
           height: "auto",
           objectFit: "cover",
+          borderRadius: "200px 20px 100px 50px"
         }}>
       </Box>
     </>

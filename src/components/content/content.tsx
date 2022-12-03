@@ -1,10 +1,12 @@
 import React, { FC, useCallback, useState } from 'react'
-import { Box, Button, Grid, Paper, ThemeProvider, Typography, } from '@mui/material'
+import { Box, Grid, Paper, ThemeProvider } from '@mui/material'
 import { Portrait } from './portrait/portrait';
 import { PortraitData } from './portrait-data/portrait-data';
 import { useQuery } from 'react-query';
-import { fetchPeople, IPeople } from '../../utils/fetch-people';
-import { contentTheme } from './styled-content';
+import { fetchPeople } from '../../utils/fetch-people';
+import { buttonStyle, contentTheme } from './styled-content';
+import { SharedButton } from '../../shared/button/shared-button';
+import { IPeople } from '../../interface/people.interface';
 
 export const Content: FC = () => {
   const [id, setId] = useState<number>(1)
@@ -28,7 +30,7 @@ export const Content: FC = () => {
   } else if (!isLoading && !isError) {
     component = <PortraitData peopleData={peopleData}/>
   }
-
+  
   return (
     <ThemeProvider theme={contentTheme}>
       <Grid 
@@ -43,9 +45,7 @@ export const Content: FC = () => {
             {component}
           </Paper>
           <Box py={2}>
-            <Button variant="contained" onClick={nextProfile}>
-              <Typography variant="button" textTransform="lowercase">next profiles</Typography>
-            </Button>
+            <SharedButton name='next profiles' variant='contained' style={buttonStyle} clickFn={nextProfile}/>
           </Box>
       </Grid>
     </ThemeProvider>

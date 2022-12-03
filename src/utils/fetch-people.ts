@@ -1,8 +1,4 @@
-export interface IPeople {
-  name: string;
-  eye_color: string;
-  birth_year: string;
-}
+import { IPeople } from "../interface/people.interface";
 
 export const fetchPeople = async (id: number = 1): Promise<IPeople>=> {
   const response = await fetch(`https://swapi.py4e.com/api/people/${id}/`)

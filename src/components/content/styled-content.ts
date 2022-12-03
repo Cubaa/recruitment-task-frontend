@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@mui/material";
+import { createTheme, responsiveFontSizes, SxProps } from "@mui/material";
 
 export const contentTheme = responsiveFontSizes(createTheme({
   components: {
@@ -54,25 +54,30 @@ export const contentTheme = responsiveFontSizes(createTheme({
             sm: 0
           }
         }
-      }
+      },
     },
-    MuiButton: {
-      defaultProps: {
-        sx: {
-          width: "220px",
-          backgroundColor: "#35660E",
-          boxShadow: "10px 4px 4px rgba(0, 0, 0, 0.75)",
-          fontFamily: "'Lato', sans-serif",
-          fontWeight: "400",
-          fontStyle: "italic",
-          borderRadius: "20px",
-
-          '&:hover': {
-            backgroundColor: "#35660E",
-            boxShadow: "10px 4px 4px rgba(0, 0, 0, 0.75)",
-          },
-        }
-      }
+  },
+  typography: {
+    button: {
+      fontSize: '20px',
+      textTransform: 'lowercase'
     }
   }
 }))
+
+export const buttonStyle: SxProps = {
+  bgcolor: "#35660E",
+  width: '220',
+  height: '35',
+  boxShadow: "10px 4px 4px rgba(0, 0, 0, 0.75)",
+  fontFamily: "'Lato', sans-serif",
+  fontWeight: "400",
+  fontStyle: "italic",
+  borderRadius: "20px",
+  cursor: 'pointer',
+  color: "#fff",
+  '&:hover': {
+    backgroundColor: "#35660E",
+    boxShadow: "10px 4px 4px rgba(0, 0, 0, 0.75)",
+  },
+}

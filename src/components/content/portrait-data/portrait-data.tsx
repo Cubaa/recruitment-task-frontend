@@ -1,11 +1,7 @@
 import React, { FC } from 'react'
 import { Box, Grid, ThemeProvider, Typography } from '@mui/material'
-import { IPeople } from '../../../utils/fetch-people';
 import { detailsTheme, personDetailsTheme } from './styled-portrait-data';
-
-interface IPortraitDataProps {
-  peopleData: IPeople | undefined;
-}
+import { IPortraitDataProps } from './portrait-data.interface';
 
 export const PortraitData: FC<IPortraitDataProps> = (props) => {
   const { peopleData } = props;

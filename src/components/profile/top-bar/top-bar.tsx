@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Box, Grid, ThemeProvider, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { SharedButton } from '../../shared/button/shared-button'
+import { SharedButton } from '../../../shared/button/shared-button'
 import { buttonStyle, topBarTheme } from './styled-top-bar'
 
 export const TopBar: FC = () => {

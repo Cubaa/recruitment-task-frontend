@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { 
   Box, 
-  Button, 
   Checkbox, 
   Divider, 
   FormControlLabel, 
@@ -16,10 +15,18 @@ import {
   ThemeProvider, 
   Typography 
 } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton';
 import { formTheme } from './styled-registration';
+import { useMutation } from 'react-query';
+import { createUser } from '../../utils/create-user';
+import { AxiosError, AxiosResponse } from 'axios'
+import { useGlobalContext } from '../../contexts/starwars/starwars.context';
+import { ICreateUser } from '../../interface/create-user.interface';
 
 export const Registration: FC = () => {
-  const formSchema = Yup.object().shape(registrationSchema);
+    const { starWarsData } = useGlobalContext();
+    const { isLoading, isError, error, mutate } = useMutation<AxiosResponse, AxiosError, ICreateUser>(createUser)
+    const formSchema = Yup.object().shape(registrationSchema);
 
   const {
     register, handleSubmit,
@@ -32,7 +39,7 @@ export const Registration: FC = () => {
 
   const submit = (formData: FieldValues) => 
   {
-    console.log(formData)
+    mutate({formData, starWarsData});
   };
 
   return (
@@ -44,6 +51,9 @@ export const Registration: FC = () => {
             <Divider></Divider>
           </Box>
           <Box component="form" method="POST" autoComplete='off' sx={{ mt: 9 }}>
+          {isError ? <Box width="100%" display="flex" justifyContent="center">
+            <Typography variant="body1" color={error ? 'error' : 'inherit'}>{error.message}</Typography>
+          </Box> : null}
           <Grid container item spacing={3}>
               <Grid item xs={12}>
                 <TextField
@@ -124,6 +134,7 @@ export const Registration: FC = () => {
                               color: errors['acceptTerms'] ? "#FF0000" : '#000'
                             }
                           }}
+                          name="acceptTerms"
                           onChange={e => onChange(e.target.checked)}
                         />
                       )}
@@ -143,9 +154,15 @@ export const Registration: FC = () => {
               </Grid>
             </Grid>
             <Box width="100%" display="flex" justifyContent="center" py={2}>
-            <Button onClick={handleSubmit(submit)} variant="contained">
+              <LoadingButton
+                loading={isLoading}
+                loadingPosition="start"
+                startIcon={<></>}
+                variant="contained"
+                onClick={handleSubmit(submit)}
+            >
               <Typography variant="button">zapisz</Typography>
-            </Button>
+              </LoadingButton>
             </Box>
           </Box>
         </Grid>

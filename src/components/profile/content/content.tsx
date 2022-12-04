@@ -3,12 +3,12 @@ import { Box, Grid, Paper, ThemeProvider } from '@mui/material'
 import { Portrait } from './portrait/portrait';
 import { PortraitData } from './portrait-data/portrait-data';
 import { useQuery } from 'react-query';
-import { fetchPeople } from '../../utils/fetch-people';
+import { fetchPeople } from '../../../utils/fetch-people';
 import { buttonStyle, contentTheme } from './styled-content';
-import { SharedButton } from '../../shared/button/shared-button';
-import { IPeople, IStarWarsData } from '../../interface/people.interface';
+import { SharedButton } from '../../../shared/button/shared-button';
+import { IPeople, IStarWarsData } from '../../../interface/people.interface';
 import { AxiosError } from 'axios'
-import { useGlobalContext } from '../../contexts/starwars/starwars.context';
+import { useGlobalContext } from '../../../contexts/starwars/starwars.context';
 
 export const Content: FC = () => {
   const [id, setId] = useState<number>(1)

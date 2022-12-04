@@ -107,8 +107,16 @@ export const formTheme = responsiveFontSizes(createTheme({
             boxShadow: "10px 4px 4px rgba(0, 0, 0, 0.75)",
       },
     }
+      },
+      styleOverrides: {
+        root: {
+          '.MuiCircularProgress-root': {
+            width: "25px !important",
+            height: "25px !important"
+          },
+        }
       }
-    }
+    },
   },
   typography: {
     h6: {
@@ -122,6 +130,13 @@ export const formTheme = responsiveFontSizes(createTheme({
     button: {
       textTransform: "lowercase",
       fontSize: "20px"
+    },
+    body1: {
+      fontFamily: 'Inter, sans-serif',
+      fontStyle: 'normal',
+      fontWeight: 800,
+      fontSize: '15px',
+      letterSpacing: '0.15em',
     }
   },
 }))

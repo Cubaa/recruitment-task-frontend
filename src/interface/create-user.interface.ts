@@ -3,5 +3,5 @@ import { IStarWarsData } from "./people.interface";
 
 export interface ICreateUser {
   formData: FieldValues;
-  starWarsData: IStarWarsData[];
+  star_wars_data: IStarWarsData[];
 }

@@ -5,12 +5,10 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          padding: 0,
-          margin: 0,
           boxSizing: "border-box",
           backgroundColor: "#D9D9D9",
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });

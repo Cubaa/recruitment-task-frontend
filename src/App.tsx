@@ -1,37 +1,44 @@
-import React, { FC, useState } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Registration } from './components/registration/registration';
-import { Grid } from '@mui/material';
-import { Profile } from './components/profile/profile';
-import { IStarWarsData } from './interface/people.interface';
-import { AppContext } from './contexts/starwars/starwars.context';
+import React, { FC, useCallback, useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Grid } from "@mui/material";
+import { IStarWarsData } from "./interface/people.interface";
+import { AppContext } from "./contexts/starwars/starwars.context";
+import { Registration } from "./components/registration/registration";
+import { Home } from "./components/home/home";
 
 export const App: FC = () => {
-  const [starWarsData, setStarWarsData] = useState<IStarWarsData[]>([]);
+  const [star_wars_data, setStar_wars_data] = useState<IStarWarsData[]>([]);
 
-  const getStarWarsData = (data: IStarWarsData) => {
-    setStarWarsData(starWarsData => [...starWarsData, data])
-  }
+  const getStarWarsData = useCallback((data: IStarWarsData) => {
+    setStar_wars_data((star_wars_data) => [...star_wars_data, data]);
+  }, []);
 
   const router = createBrowserRouter([
     {
-      element: <Profile />,
+      element: <Home />,
       path: "/",
     },
     {
       element: <Registration />,
-      path: '/registration'
-    }
+      path: "/registration",
+    },
   ]);
 
   return (
-    <Grid container width={{
-      xs: "100%",
-      lg: "1130px"
-    }} bgcolor="#FFFFFF" minHeight="100vh" margin="0 auto" component="main">
-      <AppContext.Provider value={{getStarWarsData, starWarsData}}>
+    <Grid
+      container
+      width={{
+        xs: "100%",
+        lg: "1130px",
+      }}
+      bgcolor="#FFFFFF"
+      minHeight="100vh"
+      margin="0 auto"
+      component="main"
+    >
+      <AppContext.Provider value={{ getStarWarsData, star_wars_data }}>
         <RouterProvider router={router} />
       </AppContext.Provider>
     </Grid>
   );
-}
+};

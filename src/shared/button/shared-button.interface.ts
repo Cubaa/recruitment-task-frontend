@@ -4,5 +4,5 @@ export interface SharedButtonProps {
   name: string;
   style: SxProps;
   variant: "text" | "outlined" | "contained" | undefined;
-  clickFn: () => void; 
+  clickFn: () => void;
 }

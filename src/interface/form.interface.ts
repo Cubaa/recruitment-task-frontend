@@ -8,5 +8,9 @@ export interface IFormSchema extends ObjectShape {
   phoneNumber: RequiredStringSchema<string | undefined, AnyObject>;
   password: RequiredStringSchema<string | undefined, AnyObject>;
   email: RequiredStringSchema<string | undefined, AnyObject>;
-  acceptTerms: BooleanSchema<boolean | undefined, AnyObject, boolean | undefined>;
+  acceptTerms: BooleanSchema<
+    boolean | undefined,
+    AnyObject,
+    boolean | undefined
+  >;
 }
